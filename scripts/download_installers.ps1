@@ -9,6 +9,7 @@ $UrlsHash = @{
     ObsStudio        = "https://cdn-fastly.obsproject.com/downloads/OBS-Studio-30.2.3-Windows-Installer.exe";
     PowerShell       = "https://github.com/PowerShell/PowerShell/releases/download/v7.4.5/PowerShell-7.4.5-win-x64.msi"
     PowerToys = "https://github.com/microsoft/PowerToys/releases/download/v0.85.1/PowerToysSetup-0.85.1-x64.exe"
+    Qalculate = "https://github.com/Qalculate/libqalculate/releases/download/v5.3.0/qalculate-5.3.0-x64.msi"
 }
 
 $path = [System.Environment]::GetFolderPath("Desktop") 
