@@ -1,18 +1,20 @@
 #!/bin/bash
 
-download_status=$(git clone https://github.com/spaceship-prompt/spaceship-prompt.git "$ZSH_CUSTOM/themes/spaceship-prompt" --depth=1)
+# Log file
+LOG_FILE="/tmp/configure_oh_my_zsh.log"
 
-if [ "$download_status" != "Cloning into '$ZSH_CUSTOM/themes/spaceship-prompt'..." ]; then
-    echo "Error: Spaceship prompt theme could not be downloaded."
-    exit 1
-fi
+# Clone the repository
+echo "Cloning repository..." | tee -a "$LOG_FILE"
+download_status=$(git clone https://github.com/spaceship-prompt/spaceship-prompt.git "$ZSH_CUSTOM/themes/spaceship-prompt" --depth=1 2>&1 | tee -a "$LOG_FILE")
 
-link_status=$(ln -s "$ZSH_CUSTOM/themes/spaceship-prompt/spaceship.zsh-theme" "$ZSH_CUSTOM/themes/spaceship.zsh-theme")
+# Create symbolic link
+echo "Creating symbolic link..." | tee -a "$LOG_FILE"
+link_status=$(ln -s "$ZSH_CUSTOM/themes/spaceship-prompt/spaceship.zsh-theme" "$ZSH_CUSTOM/themes/spaceship.zsh-theme" 2>&1 | tee -a "$LOG_FILE")
 
-if [ "$link_status" == "ln: failed to create symbolic link '$ZSH_CUSTOM/themes/spaceship.zsh-theme': File exists" ]; then
-    echo "Error: Spaceship prompt theme could not be linked."
-    exit 1
-fi
+# Download and install zinit
+echo "Installing zinit..." | tee -a "$LOG_FILE"
+curl --fail --show-error --silent --location https://raw.githubusercontent.com/zdharma-continuum/zinit/HEAD/scripts/install.sh | tee -a "$LOG_FILE"
 
-curl --fail --show-error --silent --location https://raw.githubusercontent.com/zdharma-continuum/zinit/HEAD/scripts/install.sh
-
+# Copy .zshrc
+echo "Copying .zshrc..." | tee -a "$LOG_FILE"
+cp '../.zshrc' "$HOME/.zshrc" --force | tee -a "$LOG_FILE"
