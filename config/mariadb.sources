@@ -1,0 +1,10 @@
+# MariaDB 11 Rolling RC repository list - created 2024-10-25 23:00 UTC
+# https://mariadb.org/download/
+X-Repolib-Name: MariaDB
+Types: deb
+# deb.mariadb.org is a dynamic mirror if your preferred mirror goes offline. See https://mariadb.org/mirrorbits/ for details.
+# URIs: https://deb.mariadb.org/11.rc/ubuntu
+URIs: https://espejito.fder.edu.uy/mariadb/repo/11.rc/ubuntu
+Suites: noble
+Components: main main/debug
+Signed-By: /etc/apt/keyrings/mariadb-keyring.pgp
